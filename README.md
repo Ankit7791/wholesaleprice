@@ -61,6 +61,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 						$product_id = $productvalue['id'];
 						$pricearray = get_post_meta( $product_id, 'wholesale_customer_wholesale_price' );
+						if($pricearray[0] == ""){
+
+							$pricearray = get_post_meta( $product_id, '_price' );	
+							
+						}
 						$quantity = apply_filters( 'woocommerce_checkout_cart_item_quantity', $cart_item['quantity'], $cart_item, $cart_item_key ); 
 						$price = $pricearray[0] * $quantity;
 
@@ -70,7 +75,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 						$productvalue = $_product->get_data();
 
 						$product_id = $productvalue['id'];
-						$pricearray = get_post_meta( $product_id, 'wholesale_customer_wholesale_price' );
+						$pricearray = get_post_meta( $product_id, 'eu_wholesale_customer_wholesale_price' );
+						if($pricearray[0] == ""){
+
+							$pricearray = get_post_meta( $product_id, '_price' );	
+							
+						}
 						$quantity = apply_filters( 'woocommerce_checkout_cart_item_quantity', $cart_item['quantity'], $cart_item, $cart_item_key ); 
 						$price = $pricearray[0] * $quantity;
 
@@ -81,18 +91,28 @@ if ( ! defined( 'ABSPATH' ) ) {
 						$productvalue = $_product->get_data();
 
 						$product_id = $productvalue['id'];
-						$pricearray = get_post_meta( $product_id, 'wholesale_customer_wholesale_price' );
-						$quantity = apply_filters( 'woocommerce_checkout_cart_item_quantity', $cart_item['quantity'], $cart_item, $cart_item_key ); 
-						$price = $pricearray[0] * $quantity;
+						$pricearray = get_post_meta( $product_id, '11_discount_wholesale_price' );
+						if($pricearray[0] == ""){
 
-						echo "£".$price;
+							$pricearray = get_post_meta( $product_id, '_price' );	
+							
+						}
+						$quantity = apply_filters( 'woocommerce_checkout_cart_item_quantity', $cart_item['quantity'], $cart_item, $cart_item_key ); 
+						$price = ($pricearray[0] * 0.89) * $quantity;
+                        $roundedprice =  round($price, 2);
+						echo "£".$roundedprice;
 						
 					}else if($userrole == "ad_wholesale_customer"){
 						
 						$productvalue = $_product->get_data();
 
 						$product_id = $productvalue['id'];
-						$pricearray = get_post_meta( $product_id, 'wholesale_customer_wholesale_price' );
+						$pricearray = get_post_meta( $product_id, 'ad_wholesaler_role_wholesale_price' );
+						if($pricearray[0] == ""){
+
+							$pricearray = get_post_meta( $product_id, '_price' );	
+							
+						}
 						$quantity = apply_filters( 'woocommerce_checkout_cart_item_quantity', $cart_item['quantity'], $cart_item, $cart_item_key ); 
 						$price = $pricearray[0] * $quantity;
 
