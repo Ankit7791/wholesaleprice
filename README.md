@@ -2,7 +2,7 @@
 woo-conditional-product-fees-for-checkout
 //wp-content/plugins/woo-conditional-product-fees-for-checkout/woocommerce/checkout/review-order.php
 
-	<?php
+<?php
 /**
  * Review order table
  *
@@ -69,7 +69,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 						$quantity = apply_filters( 'woocommerce_checkout_cart_item_quantity', $cart_item['quantity'], $cart_item, $cart_item_key ); 
 						$price = $pricearray[0] * $quantity;
 
-						echo "£".$price;
+						$roundedprice = sprintf('%0.2f', $price);
+						echo "£".$roundedprice;
 					}else if($userrole == "eu_wholesale_customer"){
 						
 						$productvalue = $_product->get_data();
@@ -84,7 +85,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 						$quantity = apply_filters( 'woocommerce_checkout_cart_item_quantity', $cart_item['quantity'], $cart_item, $cart_item_key ); 
 						$price = $pricearray[0] * $quantity;
 
-						echo "£".$price;
+						$roundedprice = sprintf('%0.2f', $price);
+						echo "£".$roundedprice;
 						
 					}else if($userrole == "11_discount"){
 						
@@ -99,7 +101,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 						}
 						$quantity = apply_filters( 'woocommerce_checkout_cart_item_quantity', $cart_item['quantity'], $cart_item, $cart_item_key ); 
 						$price = ($pricearray[0] * 0.89) * $quantity;
-                        $roundedprice =  round($price, 2);
+                        //$roundedprice =  round($price, 2);
+						$roundedprice = sprintf('%0.2f', $price);
 						echo "£".$roundedprice;
 						
 					}else if($userrole == "ad_wholesale_customer"){
@@ -116,7 +119,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 						$quantity = apply_filters( 'woocommerce_checkout_cart_item_quantity', $cart_item['quantity'], $cart_item, $cart_item_key ); 
 						$price = $pricearray[0] * $quantity;
 
-						echo "£".$price;
+						$roundedprice = sprintf('%0.2f', $price);
+						echo "£".$roundedprice;
 						
 					}else {
 						
